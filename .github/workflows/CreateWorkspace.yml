@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  runAPI:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create a Fabric Workspace
+        run: |
+          gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f body='
+          {
+            "displayName": {{ env.workspacename }}
+          }'
