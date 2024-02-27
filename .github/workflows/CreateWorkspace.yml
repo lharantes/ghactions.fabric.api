@@ -18,8 +18,8 @@ jobs:
         run: |
           gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName="${{ inputs.workspacename }}" \
           --header  "Content-Type":"application/json" \
-          --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}" >> $GITHUB_OUTPUT
+          --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}" >> $GH_OUTPUT
     
       - name: Get Fabric Workspace ID
         run: 
-          echo >> $GITHUB_OUTPUT
+          echo $GH_OUTPUT
