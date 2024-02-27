@@ -12,7 +12,7 @@ jobs:
   runAPI:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secure.FBTOKEN }}
+      GH_TOKEN: ${{ secrets.FBTOKEN }}
     steps:
       - name: Create a Fabric Workspace
         run: |
