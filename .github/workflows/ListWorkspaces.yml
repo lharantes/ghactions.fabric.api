@@ -5,6 +5,8 @@ on:
 jobs:
   runAPI:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.FBTOKEN }}
     steps:
       - name: List Fabric Workspace
         run: |
