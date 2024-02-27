@@ -4,15 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       workspacename:
-        description: 'Name of the Workspace'
+        description: 'Name of Workspace'
         required: true
         type: string
 
 jobs:
   runAPI:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.FBTOKEN }}
     steps:
       - name: Create a Fabric Workspace
         run: |
