@@ -1,0 +1,13 @@
+name: List Fabric Workspace
+
+on:
+  workflow_dispatch:
+jobs:
+  runAPI:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List Fabric Workspace
+        run: |
+          gh api -X GET https://api.fabric.microsoft.com/v1/workspaces \
+          --header  "Content-Type":"application/json" \
+          --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}"
