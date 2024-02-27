@@ -16,9 +16,6 @@ jobs:
     steps:
       - name: Create a Fabric Workspace
         run: |
-          gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f body='
-          {
-            "displayName": "${{ inputs.workspacename }}" 
-          }' \
+          gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName='"${{ inputs.workspacename }}"  \
           --header  "Content-Type":"application/json" \
           --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}"
