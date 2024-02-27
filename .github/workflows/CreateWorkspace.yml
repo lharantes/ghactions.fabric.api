@@ -7,10 +7,12 @@ on:
         description: 'Name of the Workspace'
         required: true
         type: string
+
 jobs:
   runAPI:
     runs-on: ubuntu-latest
-
+    env:
+      GH_TOKEN: ${{ env.token }}
     steps:
       - name: Create a Fabric Workspace
         run: |
