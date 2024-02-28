@@ -23,6 +23,6 @@ jobs:
     
       - name: Get Fabric Workspace ID
         env:
-          WS_id: ${{ steps.create_ws.outputs.stdout }}  
+          WS_ID: ${{ steps.create_ws.outputs.stdout }}  
         run:
-          echo ${{ WS_id }}  
+          echo ${{ WS_ID }}  
