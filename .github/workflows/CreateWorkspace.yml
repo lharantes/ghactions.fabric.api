@@ -25,4 +25,4 @@ jobs:
         env:
           WS_ID: ${{ steps.create_ws.outputs.stdout }}  
         run:
-          echo ${{ WS_ID }}  
+          echo ${{ env.WS_ID }}  
