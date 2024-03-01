@@ -24,7 +24,4 @@ jobs:
           --header  "Content-Type":"application/json" \
           --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")" >> $GITHUB_OUTPUT
 
-    
-      - name: Get Fabric Workspace ID
-        run:
-          echo ${{ws_created}}  
+          echo ${{ws_created}}     
