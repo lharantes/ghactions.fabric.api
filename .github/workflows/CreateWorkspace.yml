@@ -19,14 +19,8 @@ jobs:
       - name: Create a Fabric Workspace
         id: create_ws
         run: |
-          gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName="${{ inputs.workspacename }}" \
+          luiz="$(gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName="${{ inputs.workspacename }}" \
           --header  "Content-Type":"application/json" \
-          --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}"
-      
-  job2:
-    runs-on: ubuntu-latest
-    needs: runAPI
-    steps:
-      - env:
-          OUTPUT1: ${{needs.runAPI.outputs.ws_created}}
-        run: echo "$OUTPUT1"
+          --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")"
+          echo 'NUM_OPEN_ISSUES='$luiz
+
