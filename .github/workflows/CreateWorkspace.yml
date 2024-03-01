@@ -22,5 +22,4 @@ jobs:
           ws_api_create="$(gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName="${{ inputs.workspacename }}" \
           --header  "Content-Type":"application/json" \
           --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")"
-          echo 'WS_ID='$ws_api_create | cut -f2 -d":"
-        shell: bash
+          echo 'WS_ID='$ws_api_create | cut -f2 -d":"  | cut -f2 -d","
