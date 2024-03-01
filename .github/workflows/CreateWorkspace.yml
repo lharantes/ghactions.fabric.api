@@ -24,3 +24,4 @@ jobs:
           --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")"
           echo 'WS_ID='$ws_api_create
           echo $WS_ID | cut -f2 -d":"
+        shell: bash
