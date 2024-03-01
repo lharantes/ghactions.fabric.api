@@ -20,10 +20,10 @@ jobs:
           gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName="${{ inputs.workspacename }}" \
           --header  "Content-Type":"application/json" \
           --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}"
-          echo ${{ steps.create_ws.outputs.result }} 
+          echo ${{ steps.create_ws.outputs.response }} 
     
       - name: Get Fabric Workspace ID
         env:
-          WS_ID: ${{ steps.create_ws.outputs.result }}  
+          WS_ID: ${{ steps.create_ws.outputs.response }}  
         run:
           echo ${{ env.WS_ID }}  
