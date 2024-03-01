@@ -19,8 +19,8 @@ jobs:
       - name: Create a Fabric Workspace
         id: create_ws
         run: |
-          luiz="$(gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName="${{ inputs.workspacename }}" \
+          ws_api_create="$(gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName="${{ inputs.workspacename }}" \
           --header  "Content-Type":"application/json" \
           --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")"
-          echo 'NUM_OPEN_ISSUES='$luiz
+          echo 'WS_ID='$ws_api_create
 
