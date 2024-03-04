@@ -7,6 +7,18 @@ on:
         description: 'ID of Workspace'
         required: true
         type: string
+      Permission:
+        description: 'Permission in Workspace'
+        required: true
+        type: string
+      ID:
+        description: 'ID of User/Group'
+        required: true
+        type: string
+      Type_ID:
+        description: 'Type of ID'
+        required: true
+        type: string
 
 jobs:
   runAPI:
@@ -17,6 +29,14 @@ jobs:
       - name: Add Workspace Role Assignment
         id: create_ws
         run: |
-          ws_api_create="$(gh api -X POST POST https://api.fabric.microsoft.com/v1/workspaces/${{ inputs.WorkspaceID }}/roleAssignments \
+          ws_api_create="$(gh api -X POST POST https://api.fabric.microsoft.com/v1/workspaces/${{ inputs.WorkspaceID }}/roleAssignments -f body='
+          {
+            "principal": {
+            "id": ${{ inputs.ID }},
+            "type": ${{ inputs.Type_ID }}
+            },
+            "role": ${{ inputs.Permission }}
+          } \
           --header  "Content-Type":"application/json" \
           --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")"
+
