@@ -1,0 +1,25 @@
+name: Create a Fabric Workspace
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspacename:
+        description: 'Name of Workspace'
+        required: true
+        type: string
+
+jobs:
+  runAPI:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.FBTOKEN }}
+    outputs:
+      ws_created: ${{ steps.create_ws.outputs.result }}
+    steps:
+      - name: Create a Fabric Workspace
+        id: create_ws
+        run: |
+          ws_api_create="$(gh api -X POST https://api.fabric.microsoft.com/v1/workspaces -f displayName="${{ inputs.workspacename }}" \
+          --header  "Content-Type":"application/json" \
+          --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")"
+          echo 'WS_ID='$ws_api_create | cut -f2 -d":"  | cut -f1 -d","
