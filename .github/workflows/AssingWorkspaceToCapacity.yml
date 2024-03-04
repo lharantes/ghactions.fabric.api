@@ -1,0 +1,25 @@
+name: Assign Workspace to capacity
+
+on:
+  workflow_dispatch:
+    inputs:
+      WorkspaceID:
+        description: 'ID of Workspace'
+        required: true
+        type: string
+      FbCapacityID:
+        description: 'ID of Fabric Capacity'
+        required: true
+        type: string
+
+jobs:
+  runAPI:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.FBTOKEN }}
+    steps:
+      - name: Assign Workspace to capacity
+        run: |
+          ws_api_create="$(gh api -X POST https://api.fabric.microsoft.com/v1/workspaces/${{ inputs.WorkspaceID }}/assignToCapacity -f capacityId="${{ inputs.FbCapacityID }}" \
+          --header  "Content-Type":"application/json" \
+          --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")"
