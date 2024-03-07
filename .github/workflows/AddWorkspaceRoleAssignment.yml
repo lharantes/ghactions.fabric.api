@@ -1,4 +1,4 @@
-name: Add Workspace Role Assignment
+name: Add User Role Assignment
 
 on:
   workflow_dispatch:
