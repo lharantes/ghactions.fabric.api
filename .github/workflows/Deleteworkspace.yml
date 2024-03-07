@@ -1,0 +1,21 @@
+name: Delete a Fabric Workspace
+
+on:
+  workflow_dispatch:
+    inputs:
+      WorkspaceID:
+        description: 'ID of Workspace'
+        required: true
+        type: string
+
+jobs:
+  runAPI:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.FBTOKEN }}
+    steps:
+      - name: Delete a Fabric Workspace
+        run: |
+          ws_api_delete="$(gh api -X DELETE https://api.fabric.microsoft.com/v1/workspaces/"${{ inputs.WorkspaceID }}" \
+          --header  "Content-Type":"application/json" \
+          --header  "Authorization":"Bearer ${{ secrets.FBTOKEN }}")"
