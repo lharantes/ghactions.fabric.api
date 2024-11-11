@@ -6,6 +6,11 @@ jobs:
   runAPI:
     runs-on: ubuntu-latest
     steps:
+      - name: Login to Azure
+        uses: Azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE }}
+          
       - name: List Fabric Workspace
         id: token_fabric
         run: |
