@@ -34,5 +34,5 @@ jobs:
           TOKEN_SECRET: ${{ steps.gen_token.outputs.token }}
         run: | 
           curl --location --request POST 'https://api.fabric.microsoft.com/v1/workspaces/18fbbc03-bb4b-4020-a60f-afc3c9ae8412/environments/30ee73a6-e616-4935-be5b-0c16cf363b01/staging/publish' \
-          --header "Content-Length: 1000"
+          --header "Content-Length: 1000" \
           --header 'Authorization: Bearer '"$TOKEN_SECRET"''
