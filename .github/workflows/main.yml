@@ -1,0 +1,29 @@
+name: List Fabric Workspace
+on:
+  workflow_dispatch:
+jobs:
+  runAPI:
+    runs-on: ubuntu-latest
+    steps:         
+      - name: Generate a Fabric token
+        shell: bash
+        id: gen_token
+        run: |
+          token=$(curl --location 'https://login.microsoftonline.com/f8995354-0d76-47e6-bc08-a9a9e2d07d25/oauth2/v2.0/token' \
+          --header 'Content-Type: application/x-www-form-urlencoded' \
+          --data-urlencode 'grant_type=client_credentials' \
+          --data-urlencode 'client_id=6fd1acae-8ee0-4346-8aa0-42fff987fa35' \
+          --data-urlencode 'client_secret=${{ secrets.client }}' \
+          --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token') 
+          echo "token=$token" >> $GITHUB_OUTPUT
+
+      - name: List Fabric workspaces
+        shell: bash
+        env:
+          TOKEN_SECRET: ${{ steps.gen_token.outputs.token }}
+        run: | 
+          touch file.whl
+          curl --location 'https://api.fabric.microsoft.com/v1/workspaces/18fbbc03-bb4b-4020-a60f-afc3c9ae8412/environments/30ee73a6-e616-4935-be5b-0c16cf363b01/staging/libraries' \
+          --header 'Content-Type: multipart/form-data' \
+          --header 'Authorization: Bearer '"$TOKEN_SECRET"'' \
+          --form 'file=@"file.whl"'
