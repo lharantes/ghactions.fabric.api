@@ -5,12 +5,7 @@ on:
 jobs:
   runAPI:
     runs-on: ubuntu-latest
-    steps:
-      - name: Login to Azure
-        uses: Azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE }}
-          
+    steps:         
       - name: List Fabric Workspace
         id: token_fabric
         run: |
@@ -26,4 +21,4 @@ jobs:
           GH_TOKEN: ${{ steps.token_fabric.outputs.token }}
         run: |
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer ${GH_TOKEN}'
+          --header 'Authorization: Bearer '"${GH_TOKEN}"''
