@@ -14,10 +14,8 @@ jobs:
           --data-urlencode 'grant_type=client_credentials' \
           --data-urlencode 'client_id=6fd1acae-8ee0-4346-8aa0-42fff987fa35' \
           --data-urlencode 'client_secret=${{ secrets.client }}' \
-          --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token')
+          --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token') >> $GITHUB_OUTPUT
 
       - name: List workspaces
-        env:
-          FBTOKEN: ${{ steps.token_fabric.outputs.token }}
         run:
-          curl --location 'https://api.fabric.microsoft.com/v1/workspaces' --header "Authorization: Bearer ${{env.FBTOKEN}}"
+          curl --location 'https://api.fabric.microsoft.com/v1/workspaces' --header "Authorization: Bearer $token"
