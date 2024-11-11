@@ -25,4 +25,4 @@ jobs:
         run: | 
           echo $SUPER_SECRET
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer $SUPER_SECRET'
+          --header 'Authorization: Bearer '"$SUPER_SECRET"''
