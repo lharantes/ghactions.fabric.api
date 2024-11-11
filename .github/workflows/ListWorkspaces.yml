@@ -17,6 +17,8 @@ jobs:
           --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token')
 
       - name: List workspaces
+        env:
+          FB_TOKEN: ${{ steps.token_fabric.outputs.token }}
         run:
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization:\ Bearer ${{ steps.token_fabric.outputs.token}}\'
+          --header 'Authorization: Bearer ${{ env.FB_TOKEN }}'
