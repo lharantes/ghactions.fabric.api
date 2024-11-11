@@ -19,6 +19,8 @@ jobs:
           --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token') >> $GITHUB_OUTPUT
 
       - name: List workspaces
-        run:
+        run: | 
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' /
-          --header "Authorization: Bearer ${{needs.token_fabric.outputs.token}}"
+          --header 'Authorization: Bearer $TOKEN '
+        env:
+          TOKEN: ${{ steps.token_fabric.outputs.token }}
