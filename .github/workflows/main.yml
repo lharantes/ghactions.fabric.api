@@ -1,4 +1,4 @@
-name: List Fabric Workspace
+name: Fabric environment
 on:
   workflow_dispatch:
 jobs:
