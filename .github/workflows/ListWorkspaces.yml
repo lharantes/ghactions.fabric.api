@@ -16,9 +16,5 @@ jobs:
           --data-urlencode 'client_secret=${{ secrets.client }}' \
           --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token')
 
-      - name: List Fabric Workspace
-        env:
-          GH_TOKEN: ${{ steps.token_fabric.outputs.token }}
-        run: |
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer '"${{GH_TOKEN}}"''
+          --header 'Authorization: Bearer '"$token"''
