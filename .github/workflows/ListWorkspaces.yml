@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:         
       - name: List Fabric Workspace
+        shell: bash
         id: code
         run: |
           token=$(curl --location 'https://login.microsoftonline.com/f8995354-0d76-47e6-bc08-a9a9e2d07d25/oauth2/v2.0/token' \
@@ -18,6 +19,7 @@ jobs:
           echo "tokeluiz=$token" >> $GITHUB_OUTPUT
 
       - name: List workspaces
+        shell: bash
         env:
           SUPER_SECRET: echo ${{ steps.code.outputs.tokeluiz }}
         run: | 
