@@ -18,7 +18,6 @@ jobs:
 
       - name: List workspaces
         env:
-          FB_TOKEN: ${{ steps.token_fabric.outputs.token }}
+          FBTOKEN: ${{ steps.token_fabric.outputs.token }}
         run:
-          curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer ${{ env.FB_TOKEN }}'
+          curl --location 'https://api.fabric.microsoft.com/v1/workspaces' --header "Authorization: Bearer $FBTOKEN"
