@@ -21,4 +21,4 @@ jobs:
           GH_TOKEN: ${{ steps.token_fabric.outputs.token }}
         run: |
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer '"${GH_TOKEN}"''
+          --header 'Authorization: Bearer '"${{GH_TOKEN}}"''
