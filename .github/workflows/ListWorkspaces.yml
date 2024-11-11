@@ -14,7 +14,7 @@ jobs:
           --data-urlencode 'grant_type=client_credentials' \
           --data-urlencode 'client_id=6fd1acae-8ee0-4346-8aa0-42fff987fa35' \
           --data-urlencode 'client_secret=${{ secrets.client }}' \
-          --data-urlencode 'scope=https://api.fabric.microsoft.com/.default')
+          --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token')
 
           echo "token: " ${token}
 
