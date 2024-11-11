@@ -7,10 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: List Fabric Workspace
+        id: token_fabric
         run: |
-          curl --location 'https://login.microsoftonline.com/f8995354-0d76-47e6-bc08-a9a9e2d07d25/oauth2/v2.0/token' \
+          token=$(curl --location 'https://login.microsoftonline.com/f8995354-0d76-47e6-bc08-a9a9e2d07d25/oauth2/v2.0/token' \
           --header 'Content-Type: application/x-www-form-urlencoded' \
           --data-urlencode 'grant_type=client_credentials' \
           --data-urlencode 'client_id=6fd1acae-8ee0-4346-8aa0-42fff987fa35' \
           --data-urlencode 'client_secret=${{ secrets.client }}' \
-          --data-urlencode 'scope=https://api.fabric.microsoft.com/.default'
+          --data-urlencode 'scope=https://api.fabric.microsoft.com/.default')
+
+      - name: List Fabric Workspaces
+        run: 
+          curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
+          --header 'Authorization: Bearer ${{ steps.token_fabric.outputs.token }}'
