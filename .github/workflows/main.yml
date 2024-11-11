@@ -26,7 +26,7 @@ jobs:
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces/18fbbc03-bb4b-4020-a60f-afc3c9ae8412/environments/30ee73a6-e616-4935-be5b-0c16cf363b01/staging/libraries' \
           --header 'Content-Type: multipart/form-data' \
           --header 'Authorization: Bearer '"$TOKEN_SECRET"'' \
-          --form 'file=@"file.whl"'
+          --form 'file=@"file.py"'
 
       - name: Publish Fabric workspaces
         shell: bash
