@@ -21,7 +21,7 @@ jobs:
       - name: List workspaces
         shell: bash
         env:
-          SUPER_SECRET: echo ${{ steps.code.outputs.tokeluiz }}
+          SUPER_SECRET: ${{ steps.code.outputs.tokeluiz }}
         run: | 
           echo $SUPER_SECRET
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
