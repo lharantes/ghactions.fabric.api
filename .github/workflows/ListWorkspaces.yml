@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: List Fabric Workspace
         id: token_fabric
-        env:
-          GH_TOKEN: ${{ secrets.FBTOKEN }}
         run: |
           token=$(curl --location 'https://login.microsoftonline.com/f8995354-0d76-47e6-bc08-a9a9e2d07d25/oauth2/v2.0/token' \
           --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -18,5 +16,9 @@ jobs:
           --data-urlencode 'client_secret=${{ secrets.client }}' \
           --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token')
 
+      - name: List Fabric Workspace
+        env:
+          GH_TOKEN: ${{ steps.token_fabric.outputs.token }}
+        run: |
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer ${GH_TOKEN'
+          --header 'Authorization: Bearer ${GH_TOKEN}'
