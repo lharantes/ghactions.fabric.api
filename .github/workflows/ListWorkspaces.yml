@@ -19,4 +19,4 @@ jobs:
       - name: List workspaces
         run:
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer '"${{ steps.token_fabric.outputs.token }}"''
+          --header 'Authorization:Bearer ${{ steps.token_fabric.outputs.token}} '
