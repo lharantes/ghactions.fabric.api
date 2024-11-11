@@ -22,11 +22,11 @@ jobs:
         env:
           TOKEN_SECRET: ${{ steps.gen_token.outputs.token }}
         run: | 
-          echo "print("This line will be printed.")" > file.py
+          echo "print("This line will be printed.")" > file2.py
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces/18fbbc03-bb4b-4020-a60f-afc3c9ae8412/environments/30ee73a6-e616-4935-be5b-0c16cf363b01/staging/libraries' \
           --header 'Content-Type: multipart/form-data' \
           --header 'Authorization: Bearer '"$TOKEN_SECRET"'' \
-          --form 'file=@"file.py"'
+          --form 'file=@"file2.py"'
 
       - name: Publish Fabric workspaces
         shell: bash
