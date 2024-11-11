@@ -16,7 +16,7 @@ jobs:
           --data-urlencode 'client_secret=${{ secrets.client }}' \
           --data-urlencode 'scope=https://api.fabric.microsoft.com/.default')
 
-          echo ${token}
+          echo "token: " ${token}
 
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
           --header 'Authorization: Bearer ${token}'
