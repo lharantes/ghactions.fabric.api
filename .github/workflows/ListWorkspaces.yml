@@ -18,8 +18,9 @@ jobs:
           echo "tokeluiz=$token" >> $GITHUB_OUTPUT
 
       - name: List workspaces
+        env:
+          SUPER_SECRET: echo ${{ steps.code.outputs.tokeluiz }}
         run: | 
-          LUIZ=${{ steps.code.outputs.tokeluiz }}
-          echo $LUIZ
+          echo $SUPER_SECRET
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer $LUIZ'
+          --header 'Authorization: Bearer $SUPER_SECRET'
