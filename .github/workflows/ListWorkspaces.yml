@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:         
       - name: List Fabric Workspace
-        id: token_fabric
+        id: code
         run: |
           token=$(curl --location 'https://login.microsoftonline.com/f8995354-0d76-47e6-bc08-a9a9e2d07d25/oauth2/v2.0/token' \
           --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -15,9 +15,10 @@ jobs:
           --data-urlencode 'client_id=6fd1acae-8ee0-4346-8aa0-42fff987fa35' \
           --data-urlencode 'client_secret=${{ secrets.client }}' \
           --data-urlencode 'scope=https://api.fabric.microsoft.com/.default' | jq -r '.access_token') 
-          echo $token
+          echo "tokeluiz=$token" >> $GITHUB_OUTPUT
 
       - name: List workspaces
         run: | 
+          echo ${{ steps.code.outputs.tokeluiz }}
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
-          --header 'Authorization: Bearer $token'
+          --header 'Authorization: Bearer $tokeluiz'
