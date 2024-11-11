@@ -19,6 +19,6 @@ jobs:
 
       - name: List workspaces
         run: | 
-          LUIZ=${{ steps.code.outputs.tokeluiz }}
+          LUIZ=${{ steps.code.outputs.tokeluiz }} | sed 's/./& /g'
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' \
           --header 'Authorization: Bearer $LUIZ'
