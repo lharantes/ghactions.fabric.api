@@ -5,8 +5,6 @@ on:
 jobs:
   runAPI:
     runs-on: ubuntu-latest
-    outputs:
-      env_var: ${{ steps.token_fabric.outputs.token }}
     steps:         
       - name: List Fabric Workspace
         id: token_fabric
@@ -21,6 +19,6 @@ jobs:
       - name: List workspaces
         run: | 
           curl --location 'https://api.fabric.microsoft.com/v1/workspaces' /
-          --header 'Authorization: Bearer $TOKEN '
+          --header 'Authorization: Bearer $TOKEN2'
         env:
-          TOKEN: ${{ steps.token_fabric.outputs.token }}
+          TOKEN2: ${{ steps.token_fabric.outputs.token }}
