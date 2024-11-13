@@ -27,7 +27,7 @@ jobs:
           echo "print("This line will be printed.")" > fabric_logging-1.0.1-py3-none-any.whl
           file=`ls *.whl`
           echo $file
-          fb_url='https://api.fabric.microsoft.com/v1/workspaces/"$FB_WORKSPACE"/environments/30ee73a6-e616-4935-be5b-0c16cf363b01/staging/libraries'
+          fb_url='https://api.fabric.microsoft.com/v1/workspaces/"'$FB_WORKSPACE'"/environments/30ee73a6-e616-4935-be5b-0c16cf363b01/staging/libraries'
           echo $fb_url
           echo "----------" 
           curl --location $fb_url \
